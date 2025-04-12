@@ -27,6 +27,19 @@ contract Exchange {
         calculate how much needs to be minted based on LP size
         mint back to user so they know how much they own
         add to reserves
+
+        require(make sure it's approved, error if not)
+
+        if(total == 0) {
+            liquidity = amountA
+        } else {
+            liquidityA/B = (amount A/B + total) / reserve A/B
+            use the smaller of the two
+        }
+
+        token.mint(msg.sender, liquidity)
+
+        reserveA/B += amountA/B
         */
     }
     function removeLiquidity() public {
@@ -34,7 +47,17 @@ contract Exchange {
         /*
     check if user has enough to burn first, if not error check
     get back the correct amount of tokens A and B and update the LP
-    
+    require(amount > 0, "invalid number")
+    require(token.balance(msg.sender) >= lpAmount, "not enough tokens")
+
+    amountA = (lpamount * reserveA) / total
+    same for B
+
+    token.burn(msg.sender, amount)
+
+    require(transfer failed error check)
+
+    reserveA/B = amount A/B
     */
     }
     //swap functions with AMM formula
