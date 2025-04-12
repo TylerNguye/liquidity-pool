@@ -5,29 +5,12 @@ pragma solidity ^0.8.28;
 
 // Define a contract named AutomatedMarketMaker
 contract AutomatedMoneyMaker {
-   // Declare a public state variable to store the value
-   uint256 public value;
-   int256 private constant K = 50;
-   int256 public currencyBalance1;
-   int256 public currencyBalance2;
-
-
-   // Function to increment the value by a given amount
-    function currency1UpdateBalance(int256 curr2Diff) public {
-        require(curr2Diff <= currencyBalance2);
-        int256 newCurrencyBalance1 = K / (currencyBalance2 - curr2Diff);
-    }
-
-    function currency2UpdateBalance(int256 curr1Diff) public {
-        require(curr1Diff <= currencyBalance1);
-        int256 newCurrencyBalance2 = K / (currencyBalance1 - curr1Diff);
-    }
-
-    function currencyUpdateBase(int256 x, int256 y) private {
-    }
-
-    function currencyUpdateBalances(int256 curr1Diff, int256 curr2Diff) public {
-        currency1UpdateBalance(curr2Diff);
-        currency2UpdateBalance(curr1Diff);
+    // Function to return the amount of output currency in pool
+    // @param curr1Balance Amount of currency 1 in pool
+    // @param curr1Change Integer amount of tokens that the user added/removed from the pool
+    // @param k AMM constant
+    // @return Amount of currency 2 in pool
+    function currencyUpdate(int256 curr1Balance, int256 curr1Change, int256 k) public pure returns (int256) {
+        return k / (curr1Balance + curr1Change);
     }
 }
