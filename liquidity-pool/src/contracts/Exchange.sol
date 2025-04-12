@@ -38,4 +38,9 @@ contract Exchange {
     */
     }
     //swap functions with AMM formula
+    /*
+        check for approval first, transfer the token in
+        then calculate percentage of other token to exchange
+        transfer then update reserves
+    */
 }
