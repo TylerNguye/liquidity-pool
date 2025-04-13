@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import Header from './components/Header';
+import AMMPanel from './components/AMMPanel';
+import ExchangePanel from './components/ExchangePanel';
 
 function App() {
+  const [provider, setProvider] = useState(null);
+  const [signer, setSigner] = useState(null);
+  const [account, setAccount] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: '2rem' }}>
+      <Header setProvider={setProvider} setSigner={setSigner} setAccount={setAccount} />
+      {account && <p>Connected Account: {account}</p>}
+      <AMMPanel provider={provider} />
+      <ExchangePanel provider={provider} signer={signer} />
     </div>
   );
 }
 
 export default App;
+
