@@ -8,7 +8,6 @@ function Header({ setProvider, setSigner, setAccount }) {
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
-        // Request account access
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -17,19 +16,19 @@ function Header({ setProvider, setSigner, setAccount }) {
         setSigner(signer);
         setAccount(account);
       } catch (err) {
-        setError('Could not connect to wallet');
         console.error(err);
+        setError("Could not connect to wallet");
       }
     } else {
-      setError('Please install MetaMask!');
+      setError("Please install MetaMask!");
     }
   };
 
   return (
-    <header>
-      <h1>Liquidity Pool</h1>
+    <header style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
+      <h1>Liquidity Pool dApp</h1>
       <button onClick={connectWallet}>Connect Wallet</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </header>
   );
 }
