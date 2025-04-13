@@ -1,6 +1,6 @@
 // src/components/Header.js
 import React, { useState } from 'react';
-import { ethers } from 'ethers';
+import { Web3Provider as providers } from '@ethersproject/providers'
 
 function Header({ setProvider, setSigner, setAccount }) {
   const [error, setError] = useState(null);
@@ -10,7 +10,7 @@ function Header({ setProvider, setSigner, setAccount }) {
       try {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const provider = new providers(window.ethereum);
         const signer = provider.getSigner();
         setProvider(provider);
         setSigner(signer);

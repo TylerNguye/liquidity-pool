@@ -1,9 +1,9 @@
 // src/components/AMMPanel.js
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
-import AutomatedMoneyMakerABI from '../contracts/AutomatedMoneyMaker.json';
+import AutomatedMarketMakerABI from '../contracts/AutomatedMarketMaker.sol';
 
-const AMM_ADDRESS = '0xYourAutomatedMoneyMakerAddress'; // Replace with actual deployed address
+const AMM_ADDRESS = '0xYourAutomatedMarketMakerAddress'; // Replace with actual deployed address
 
 function AMMPanel({ provider, signer }) {
   const [inputValue, setInputValue] = useState('');
@@ -15,7 +15,7 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
-      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMoneyMakerABI, provider);
+      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMarketMakerABI, provider);
       const value = await contract.getValue();
       setContractValue(value.toString());
     } catch (error) {
@@ -29,7 +29,7 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
-      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMoneyMakerABI, signer);
+      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMarketMakerABI, signer);
       const tx = await contract.increment(inputValue);
       await tx.wait();
       alert("Increment successful");

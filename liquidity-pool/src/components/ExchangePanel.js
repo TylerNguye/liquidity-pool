@@ -1,7 +1,7 @@
 // src/components/ExchangePanel.js
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
-import ExchangeABI from '../contracts/Exchange.json';
+import ExchangeABI from '../contracts/Exchange.sol';
 
 const EXCHANGE_ADDRESS = '0xYourExchangeContractAddress'; // Replace with actual deployed address
 
