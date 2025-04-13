@@ -5,20 +5,23 @@ pragma solidity ^0.8.28;
 
 // Define a contract named AutomatedMarketMaker
 contract AutomatedMoneyMaker {
-   // Declare a public state variable to store the value
-   uint256 public value;
+    int256 FEE = 200;
+    int256 WAD = 1e18;
+    // Function to return the amount of output token in pool
+    // @param curr1Balance Token 1 amount in pool
+    // @param curr1Change Integer amount of tokens that the user added/removed from the pool
+    // @param k AMM constant
+    // @return Token 2 amount obtained by buyer
+    function updatePoolBalance(int256 token1Balance, int256 token1Change, int256 k) public view returns (int256) {
+        int256 newToken1Balance = (token1Balance + token1Change) * WAD;
+        int256 totalToken2Output = k / newToken1Balance;
+        int256 fee = (totalToken2Output / WAD) * FEE;
+        return (totalToken2Output - fee) / WAD;
 
-
-   // Function to increment the value by a given amount
-   // @param _value The amount to increment the value by
-   function increment(uint256 _value) public {
-       value += _value; // Add the input value to the current value
-   }
-
-
-   // Function to retrieve the current value
-   // @return The current value of the state variable
-   function getValue() public view returns (uint256) {
-       return value; // Return the stored value
-   }
+    }
 }
+
+// k should be initialized as init x * init y
+
+// 1.5 million
+// 1 million
