@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.20;
 
 //TODO: This contract should define a way for users to deposit and withdraw (similar to HW1) from the liquidity pool
 

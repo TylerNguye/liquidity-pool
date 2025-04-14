@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.20;
 
 //TODO This contract should define the math related to AMM 
 
 // Define a contract named AutomatedMarketMaker
-contract AutomatedMoneyMaker {
+contract AutomatedMarketMaker {
     int256 FEE = 200;
     int256 WAD = 1e18;
     // Function to return the amount of output token in pool
