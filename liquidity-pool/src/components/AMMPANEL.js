@@ -1,11 +1,11 @@
 // src/components/AMMPanel.js
 import React, { useState } from 'react';
 import { ethers } from 'ethers';
-import AutomatedMarketMakerABI from '../contracts/AutomatedMarketMaker.sol';
-import LiquidABI from '../contracts/LiquidToken.sol'
+import AutomatedMarketMakerABI from '../artifacts/contracts/AutomatedMarketMaker.sol/AutomatedMarketMaker.json';
+import LiquidABI from '../artifacts/contracts/LiquidToken.sol/LiquidToken.json'
 
 const AMM_ADDRESS = '0xF8a6ea7538F866c809401505E57aB490c1609ba0'; // Replace with actual deployed address
-const LIQUID_ADDRESS =  '0x3bD174362153355b48821b304Ed7Dfe294F0f822'
+const LIQUID_ADDRESS = '0x3bD174362153355b48821b304Ed7Dfe294F0f822'
 
 function AMMPanel({ provider, signer }) {
   const [inputValue, setInputValue] = useState('');
@@ -17,10 +17,9 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
-      const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI, provider);
-      //console.log(await contract.name());
-      //const value = await contract.totalSupply();
-      //setContractValue(value.toString());
+      const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, provider);
+      const value = await contract.name();
+      setContractValue(value.toString());
     } catch (error) {
       console.error("Error fetching value:", error);
     }
