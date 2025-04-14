@@ -14,11 +14,11 @@ contract AutomatedMarketMaker {
     // @return Token 2 amount obtained by buyer
     function updatePoolBalance(int256 token1Balance, int256 token1Change, int256 k) public view returns (int256) {
         require(token1Balance >= 0, "This token's balance must be greater than 0.");
+        require(token1Change != 0, "The token must change by at least some amount (negative or positive).");
         int256 newToken1Balance = (token1Balance + token1Change) * WAD;
         int256 totalToken2Output = k / newToken1Balance;
         int256 fee = (totalToken2Output / WAD) * FEE;
         return (totalToken2Output - fee) / WAD;
-
     }
 }
 
