@@ -8,7 +8,6 @@ import "./LiquidToken.sol";
 
 // Define a contract named Exchange
 contract Exchange {
-    // Declare a public state variable to store the value
     IERC20 public tokenA;
     IERC20 public tokenB;
     AutomatedMarketMaker public amm;
@@ -17,27 +16,16 @@ contract Exchange {
     uint256 public reserveA;
     uint256 public reserveB;
 
-    uint256 public value;
-
     function setUp(address _tokenA, address _tokenB, address _amm) public {
         tokenA = IERC20(_tokenA);
         tokenB = IERC20(_tokenB);
         amm = AutomatedMarketMaker(_amm);
         lpToken = new LiquidToken(0);
     }
-    
-    // Function to increment the value by a given amount
-    // @param _value The amount to increment the value by
-    function increment(uint256 _value) public {
-        value += _value; // Add the input value to the current value
-    }
 
-    // Function to retrieve the current value
-    // @return The current value of the state variable
-    function getValue() public view returns (uint256) {
-        return value; // Return the stored value
-    }
-
+    // Function to add liquidity to a pool by a given amount
+    // @param amountA Amount of token A
+    // @param amountB Amount of token B
     function addLiquidity(uint256 amountA, uint256 amountB) public {
         //adds liquidity and receives tokens
         /*
