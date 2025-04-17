@@ -31,8 +31,16 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
+      if (isNaN(+inputValue)) {
+        alert("Input needs to be a valid number!")
+        return
+      }
+      if (+inputValue <= 0) {
+        alert("Input needs to be a positive integer!")
+        return
+      }
       const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, signer);
-      await contract.mint(signer.getAddress(), ethers.toBigInt(inputValue), {gasLimit: 5000000});
+      const tx = await contract.mint(signer.getAddress(), ethers.toBigInt(inputValue), {gasLimit: 5000000});
       alert("Increment successful");
       fetchValue();
     } catch (error) {
@@ -59,10 +67,10 @@ function AMMPanel({ provider, signer }) {
         </button>
       </div>
       <button onClick={fetchValue} style={{ marginTop: "1rem" }}>
-        Get Current Value
+        Get Liquid Token Balance
       </button>
       {contractValue !== null && (
-        <p>Current Value: {contractValue}</p>
+        <p>Current Liquid Token Amount: {contractValue}</p>
       )}
     </div>
   );
