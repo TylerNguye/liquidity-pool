@@ -5,7 +5,7 @@ import AutomatedMarketMakerABI from '../artifacts/contracts/AutomatedMarketMaker
 import LiquidABI from '../artifacts/contracts/LiquidToken.sol/LiquidToken.json'
 
 const AMM_ADDRESS = '0xDDd69BA053a82D49F20F28ab99E21Da712220dAd'; // Replace with actual deployed address
-const LIQUID_ADDRESS = '0xC98A45a306DB009E9039234FBbcf0D5e7AA12Dc2'
+const LIQUID_ADDRESS = '0x83e3C8C1f1cE403C7ec8736065F0e1695cA3e8d0'
 
 function AMMPanel({ provider, signer }) {
   const [inputValue, setInputValue] = useState('');
