@@ -66,7 +66,7 @@ contract Exchange {
             }
 }
 
-        lpToken._mint(msg.sender, liquidity);
+        lpToken.mint(msg.sender, liquidity);
 
         reserveA += amountA;
         reserveB += amountB;
