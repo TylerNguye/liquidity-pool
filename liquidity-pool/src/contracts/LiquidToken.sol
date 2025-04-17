@@ -15,4 +15,7 @@ contract LiquidToken is ERC20 {
     function burn(address account, uint256 amount) external {
         _burn(account, amount);
     }
+    function faucetMint(address to, uint256 amount) public {
+        _mint(to, amount);
+    }
 }
