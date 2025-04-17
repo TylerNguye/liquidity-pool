@@ -9,7 +9,7 @@ module.exports = {
             accounts: [process.env.PRIVATE_KEY]
         },
     },
-    paths: {
+    /*paths: {
         root: "src"
-    }
+    }*/
 };

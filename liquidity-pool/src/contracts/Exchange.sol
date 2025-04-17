@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28;
+pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./AutomatedMarketMaker.sol";
 import "./LiquidToken.sol";
@@ -16,7 +16,7 @@ contract Exchange {
     uint256 public reserveA;
     uint256 public reserveB;
 
-    function setUp(address _tokenA, address _tokenB, address _amm) public {
+    constructor (address _tokenA, address _tokenB, address _amm) {
         tokenA = IERC20(_tokenA);
         tokenB = IERC20(_tokenB);
         amm = AutomatedMarketMaker(_amm);

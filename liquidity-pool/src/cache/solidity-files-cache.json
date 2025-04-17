@@ -38,8 +38,8 @@
       ]
     },
     "/Users/tylernguyen/Downloads/CS/BoilerBlockchain/liquidity-pool/liquidity-pool/src/contracts/Exchange.sol": {
-      "lastModificationDate": 1744592135928,
-      "contentHash": "f63abfdaa73b547cb429d0a2e71b00ba",
+      "lastModificationDate": 1744852480438,
+      "contentHash": "1cc4c80aa3905e1b037ce30475f85809",
       "sourceName": "contracts/Exchange.sol",
       "solcConfig": {
         "version": "0.8.20",
@@ -65,7 +65,11 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
+        "./AutomatedMarketMaker.sol",
+        "./LiquidToken.sol"
+      ],
       "versionPragmas": [
         "^0.8.20"
       ],
@@ -74,8 +78,8 @@
       ]
     },
     "/Users/tylernguyen/Downloads/CS/BoilerBlockchain/liquidity-pool/liquidity-pool/src/contracts/LiquidToken.sol": {
-      "lastModificationDate": 1744592136384,
-      "contentHash": "ce8ffa3f0e0204c51d482d6742c7df34",
+      "lastModificationDate": 1744852358904,
+      "contentHash": "ae6711b719a64237e85841e5a5e65833",
       "sourceName": "contracts/LiquidToken.sol",
       "solcConfig": {
         "version": "0.8.20",

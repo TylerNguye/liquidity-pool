@@ -7,12 +7,12 @@ contract LiquidToken is ERC20 {
     constructor(uint256 initialSupply) ERC20("LiquidToken", "LIQD") {
         _mint(msg.sender, initialSupply);
     }
-
-    function mint(address account, uint256 amount) public {
+    
+    function mint(address account, uint256 amount) external {
         _mint(account, amount);
     }
 
-    function burn(address account, uint256 amount) public {
+    function burn(address account, uint256 amount) external {
         _burn(account, amount);
     }
 }

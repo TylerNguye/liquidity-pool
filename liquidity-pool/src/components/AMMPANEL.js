@@ -12,14 +12,16 @@ function AMMPanel({ provider, signer }) {
   const [contractValue, setContractValue] = useState(null);
 
   const fetchValue = async () => {
-    if (!provider) {
+    if (!signer) {
       alert("Connect your wallet first");
       return;
     }
     try {
-      const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, provider);
-      const value = await contract.name();
-      setContractValue(value.toString());
+      const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, signer);
+      //const value = await contract.mint(signer.getAddress(), 5);
+      //const value = signer.getAddress();
+      setContractValue(await contract.balanceOf(signer.getAddress()));
+      //setContractValue(value);
     } catch (error) {
       console.error("Error fetching value:", error);
     }
@@ -31,7 +33,7 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
-      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMarketMakerABI, signer);
+      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMarketMakerABI.abi, signer);
       const tx = await contract.increment(inputValue);
       await tx.wait();
       alert("Increment successful");
@@ -44,7 +46,7 @@ function AMMPanel({ provider, signer }) {
 
   return (
     <div style={{ marginTop: "2rem" }}>
-      <h2>AutomatedMoneyMaker Contract</h2>
+      <h2>LiquidToken Faucet</h2>
       <div>
         <label>
           Increment Value:
