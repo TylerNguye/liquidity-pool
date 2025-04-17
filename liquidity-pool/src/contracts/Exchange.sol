@@ -93,7 +93,7 @@ contract Exchange {
         uint256 amountA = (lpAmount * reserveA) / totalSupply;
         uint256 amountB = (lpAmount * reserveB) / totalSupply;
 
-        lpToken._burn(msg.sender, lpAmount);
+        lpToken.burn(msg.sender, lpAmount);
 
         tokenA.transfer(msg.sender, amountA);
         tokenB.transfer(msg.sender, amountB);
