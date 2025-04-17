@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import ExchangeABI from '../contracts/Exchange.sol';
 
-const EXCHANGE_ADDRESS = '0x0BC72962e42F2b81688d95f1d808C55822Dc8304'; // Replace with actual deployed address
+const EXCHANGE_ADDRESS = '0xa0b53DBE8459b14B0468Cf43BC89Fb783c11bAc4'; // Replace with actual deployed address
 
 function ExchangePanel({ provider, signer }) {
   const [inputValue, setInputValue] = useState('');

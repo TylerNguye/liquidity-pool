@@ -16,7 +16,7 @@ contract Exchange {
     uint256 public reserveA;
     uint256 public reserveB;
 
-    constructor (address _tokenA, address _tokenB, address _amm) {
+    function setUp (address _tokenA, address _tokenB, address _amm) public {
         tokenA = IERC20(_tokenA);
         tokenB = IERC20(_tokenB);
         amm = AutomatedMarketMaker(_amm);

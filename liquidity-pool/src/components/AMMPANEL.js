@@ -4,8 +4,8 @@ import { ethers } from 'ethers';
 import AutomatedMarketMakerABI from '../artifacts/contracts/AutomatedMarketMaker.sol/AutomatedMarketMaker.json';
 import LiquidABI from '../artifacts/contracts/LiquidToken.sol/LiquidToken.json'
 
-const AMM_ADDRESS = '0xF8a6ea7538F866c809401505E57aB490c1609ba0'; // Replace with actual deployed address
-const LIQUID_ADDRESS = '0x3bD174362153355b48821b304Ed7Dfe294F0f822'
+const AMM_ADDRESS = '0xDDd69BA053a82D49F20F28ab99E21Da712220dAd'; // Replace with actual deployed address
+const LIQUID_ADDRESS = '0xC98A45a306DB009E9039234FBbcf0D5e7AA12Dc2'
 
 function AMMPanel({ provider, signer }) {
   const [inputValue, setInputValue] = useState('');
@@ -18,10 +18,8 @@ function AMMPanel({ provider, signer }) {
     }
     try {
       const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, signer);
-      //const value = await contract.mint(signer.getAddress(), 5);
-      //const value = signer.getAddress();
-      setContractValue(await contract.balanceOf(signer.getAddress()));
-      //setContractValue(value);
+      const value = await contract.balanceOf(signer.getAddress())
+      setContractValue(value);
     } catch (error) {
       console.error("Error fetching value:", error);
     }
@@ -33,9 +31,8 @@ function AMMPanel({ provider, signer }) {
       return;
     }
     try {
-      const contract = new ethers.Contract(AMM_ADDRESS, AutomatedMarketMakerABI.abi, signer);
-      const tx = await contract.increment(inputValue);
-      await tx.wait();
+      const contract = new ethers.Contract(LIQUID_ADDRESS, LiquidABI.abi, signer);
+      await contract.mint(signer.getAddress(), ethers.toBigInt(inputValue), {gasLimit: 5000000});
       alert("Increment successful");
       fetchValue();
     } catch (error) {
